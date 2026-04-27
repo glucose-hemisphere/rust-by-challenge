@@ -19,3 +19,9 @@ fn make_loud(s: &mut str) {
     s.make_ascii_uppercase();
     println!("{s}");
 }
+
+// Output:
+//
+// 13
+// HELLO, WORLD!
+// HELLO, WORLD!

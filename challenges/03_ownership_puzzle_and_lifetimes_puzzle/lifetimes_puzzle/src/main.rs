@@ -11,11 +11,7 @@ fn main() {
 }
 
 fn longest<'a>(s1: &'a str, s2: &'a str) -> &'a str {
-    if s1.len() >= s2.len() {
-        s1
-    } else {
-        s2
-    }
+    if s1.len() >= s2.len() { s1 } else { s2 }
 }
 
 fn first_word(s: &str) -> &str {
@@ -24,3 +20,11 @@ fn first_word(s: &str) -> &str {
         None => s,
     }
 }
+
+// Output:
+//
+// barbaz
+// foo
+// barbaz
+// Hello,
+// Hello, World!

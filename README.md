@@ -11,7 +11,7 @@ If you'd like to use this repo to learn Rust for yourself, I'd suggest that you 
 1. Read the challenge description.
 2. Try to manually write and run some Rust code to complete the challenge.
 3. Give the challenge description and your code to a chatbot, then:
-    - If you were able to complete the challenge, ask it for verification and coaching.
+    - If you were able to complete the challenge, ask it for verification and review/coaching.
     - If you got stuck, ask it to help you.
 4. Once you have completed the challenge successfully, compare your code with my code, and discuss any differences with the chatbot.
 

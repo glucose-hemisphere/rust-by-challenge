@@ -1,4 +1,4 @@
-# Challenge 3: The Ownership Puzzle
+# Challenge 3: The Ownership Puzzle (and the Lifetimes Puzzle)
 
 ## The Theory
 
@@ -65,41 +65,7 @@ Write a program that demonstrates you understand ownership and borrowing. It mus
 
 ---
 
-## Solution
-
-```rust
-fn main() {
-    let mut original: String = String::from("Hello, World!");
-
-    let immutable_borrow: &String = &original;
-    print_length(immutable_borrow);
-
-    let mutable_borrow: &mut String = &mut original;
-    make_loud(mutable_borrow);
-
-    println!("{original}");
-}
-
-fn print_length(s: &str) {
-    let length: usize = s.len();
-    println!("{length}");
-}
-
-fn make_loud(s: &mut str) {
-    s.make_ascii_uppercase();
-    println!("{s}");
-}
-```
-
-## Notes
-
-- `&str` is more idiomatic than `&String` in function signatures — it accepts *any* string type, not just heap-allocated `String`s.
-- The compiler allows the mutable borrow in `make_loud` because the immutable borrow is no longer in use by that point. If both were active simultaneously, the compiler would refuse.
-- Lifetime elision means `first_word(s: &str) -> &str` doesn't need explicit annotations — the compiler infers the output borrows from the input. `longest` needs explicit annotations because it takes two inputs and the compiler can't guess which one the return value points at.
-
----
-
-## Bonus Challenge: Lifetimes
+## Bonus Challenge: The Lifetimes Puzzle
 
 ### Additional Concepts
 
@@ -113,40 +79,35 @@ fn longer<'a>(s1: &'a str, s2: &'a str) -> &'a str {
 
 Read `'a` as: *"some lifetime I'm calling 'a"*. This says: *"given two string references that both live at least as long as `'a`, I'll return a reference that also lives at least as long as `'a`."*
 
-### Bonus Task
+### Your Bonus Task
 
-Write a program with two functions:
+Write a program with three functions:
 
-1. `longest<'a>(s1: &'a str, s2: &'a str) -> &'a str` — returns the longer of two string slices with no cloning
-2. `first_word(s: &str) -> &str` — returns a slice containing only the first word
+1. `longest<'a>(s1: &'a str, s2: &'a str) -> &'a str`  
+   Takes two string slices, returns the longer one (if equal length, return either).  
+   No cloning - return a direct reference to one of the inputs.
+2. `first_word(s: &str) -> &str`  
+   Takes a string slice, returns a slice containing only the first word (everything before the first space).  
+   If there's no space, return the whole string.
 
-### Bonus Solution
+   Hint: `s.find(' ')` returns an `Option<usize>` - we'll cover `Option` properly in Challenge 6, but for now you can use it like:
 
-```rust
-fn main() {
-    let string_1 = String::from("foo");
-    let string_2 = String::from("barbaz");
-    println!("{}", longest(&string_1, &string_2));
-    println!("{string_1}");
-    println!("{string_2}");
+   ```rust
+   match s.find(' ') {
+       Some(i) => &s[..i],
+       None => s,
+   }
+   ```
 
-    let sentence = String::from("Hello, World!");
-    println!("{}", first_word(&sentence));
-    println!("{sentence}");
-}
+3. `main`
+   - Create two `String` variables
+   - Call `longest` and print the result
+   - Call `first_word` on a sentence and print the result
+   - After both calls, prove the original `String` values are still alive by printing them
 
-fn longest<'a>(s1: &'a str, s2: &'a str) -> &'a str {
-    if s1.len() >= s2.len() {
-        s1
-    } else {
-        s2
-    }
-}
+### Bonus Acceptance Criteria
 
-fn first_word(s: &str) -> &str {
-    match s.find(' ') {
-        Some(i) => &s[..i],
-        None => s,
-    }
-}
-```
+- ✅ `longest` uses an explicit lifetime annotation and returns a reference to one of its inputs - no cloning
+- ✅ `first_word` returns a `&str` slice of its input - no cloning
+- ✅ Both original `String` values are printed after the function calls
+- ✅ Compiles with no warnings

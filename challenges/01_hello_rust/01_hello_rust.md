@@ -1,4 +1,6 @@
-# Challenge 1: Hello, World (but make it interesting)
+# Challenge 1: Hello, Rust!
+
+Hello, World! but make it interesting.
 
 ## The Theory
 
@@ -32,7 +34,7 @@ let x = 5;      // immutable — you can't change x
 let mut y = 5;  // mutable — you can change y
 ```
 
-This will feel odd coming from Python. It's intentional — Rust wants you to be explicit about what changes.
+This may feel odd coming from other programming languages. It's intentional — Rust wants you to be explicit about what changes.
 
 ---
 

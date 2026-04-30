@@ -1,5 +1,7 @@
 # Rust by Challenge
 
+*(Work In Progress)*
+
 I wanted to learn the Rust programming language, but in such a way that I can start writing code almost immediately, and avoid losing motivation. So I decided to ask an AI chatbot to teach it to me through a series of coding challenges. These coding challenges start small and simple, and gradually become bigger and more advanced, culminating in a final project to build a CLI tool.
 
 This repo contains the challenges that I have completed so far, including the description and source code for each challenge.

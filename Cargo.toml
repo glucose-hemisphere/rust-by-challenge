@@ -4,6 +4,6 @@ members = [
     "challenges/02_guessing_game/guessing_game",
     "challenges/03_ownership_puzzle_and_lifetimes_puzzle/ownership_puzzle",
     "challenges/03_ownership_puzzle_and_lifetimes_puzzle/lifetimes_puzzle",
-    "challenges/04_model_a_thing/model_a_thing",
+    "challenges/04_model_a_thing/model_a_thing", "challenges/05_categorise_a_thing/categorise_a_thing",
 ]
 resolver = "3"
